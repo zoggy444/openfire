@@ -5,7 +5,7 @@ from odoo.tools.safe_eval import safe_eval
 from math import asin, sin, cos, sqrt, radians
 
 
-def round_a_cinq(val, mult):
+def round_a_cinq(val, mult=5):
     u"""arrondi au multiple de mult supérieur"""
     if val % mult:
         val = mult * (int(val / mult) + 1)

@@ -736,6 +736,9 @@ class OfPlanifCreneauProp(models.TransientModel):
         geo_lat_suiv = lieu_suiv.geo_lat
         geo_lng_suiv = lieu_suiv.geo_lng
         compteur = 0
+        routing_base_url = config.get("of_routing_base_url", "")
+        routing_version = config.get("of_routing_version", "")
+        routing_profile = config.get("of_routing_profile", "")
 
         for indice in range(len(self)):
             a_planifier = self[indice]
@@ -760,7 +763,7 @@ class OfPlanifCreneauProp(models.TransientModel):
                 query_send = urllib.quote(query.strip().encode('utf8')).replace('%3A', ':')
                 full_query = query_send + coords_str + "?"
                 try:
-                    req = requests.get(full_query)
+                    req = requests.get(full_query, timeout=10)
                     res = req.json()
                 except Exception as e:
                     res = {}
@@ -806,7 +809,7 @@ class OfPlanifCreneauProp(models.TransientModel):
             propositions = self.filtered(lambda p: p.distance_order < 99000)
             # au moment de l'appel à get_closer_one, la proposition sélectionnée a déjà été dé-sélectionnée
             # on peut donc se servir du _order des propositions
-            return propositions.sorted()[0]
+        return propositions.sorted()[0]
 
 
 class OfPlanifCreneauSecteur(models.TransientModel):
