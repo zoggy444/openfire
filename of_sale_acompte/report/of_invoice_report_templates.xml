@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<odoo>
-
-    <template  id="of_sale_acompte_report_invoice_document" inherit_id="account.report_invoice_document">
-    </template>
-
-
-</odoo>
