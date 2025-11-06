@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-
-    <!-- On doit vider la vue avant de la supprimer autrement elle pose problème lors de la mise à jour -->
-    <template id="of_sale_payment_saleorder_document_with_payments" inherit_id="sale.report_saleorder_document">
-    </template>
-</odoo>
