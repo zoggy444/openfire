@@ -12,10 +12,10 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-try:
-    from mapbox import Geocoder
-except ImportError:
-    _logger.debug(u"Impossible d'importer la librairie Python 'mapbox.Geocoder'.")
+#try:
+#    from mapbox import Geocoder
+#except ImportError:
+#    _logger.debug(u"Impossible d'importer la librairie Python 'mapbox.Geocoder'.")
 
 CORRESPONDANCE_PRECISION_BANO = {
     'housenumber': 'very_high',
@@ -167,12 +167,13 @@ class OFGeoWizardMono(models.TransientModel):
             raise UserError(u"MapBox n'est pas correctement configuré.")
 
         # initialiser le geocodeur
-        geocoder = Geocoder(access_token=server_token)
+        #geocoder = Geocoder(access_token=server_token)
 
-        try:
-            result = geocoder.forward(self.addr_search).json()
-        except Exception:
-            raise UserError(u"Une erreur inattendue est survenue lors de la requête")
+        #try:
+        #    result = geocoder.forward(self.addr_search).json()
+        #except Exception:
+        #    raise UserError(u"Une erreur inattendue est survenue lors de la requête")
+        result = False
 
         if not result or not result.get('features'):
             self.aucun_res = True
