@@ -6,7 +6,7 @@ import logging
 from odoo import models, api, tools, fields
 from odoo.exceptions import ValidationError
 from odoo.modules import get_module_resource
-from odoo.addons.base_iban.models.res_partner_bank import validate_iban
+#from odoo.addons.base_iban.models.res_partner_bank import validate_iban
 
 _logger = logging.getLogger(__name__)
 
@@ -383,14 +383,14 @@ class ResPartnerBank(models.Model):
         acc_type_exists = bool(cr.fetchall())
         res = super(ResPartnerBank, self)._auto_init()
 
-        if not acc_type_exists:
+        #if not acc_type_exists:
             # Initialisation des comptes bancaires existants
-            cr.execute("SELECT id, acc_number FROM res_partner_bank")
-            for acc_id, acc_number in cr.fetchall():
-                try:
-                    validate_iban(acc_number)
-                except ValidationError:
-                    cr.execute("UPDATE res_partner_bank SET acc_type = 'bank' WHERE id = %s", (acc_id, ))
+            #cr.execute("SELECT id, acc_number FROM res_partner_bank")
+            #for acc_id, acc_number in cr.fetchall():
+            #    try:
+            #        validate_iban(acc_number)
+            #    except ValidationError:
+            #        cr.execute("UPDATE res_partner_bank SET acc_type = 'bank' WHERE id = %s", (acc_id, ))
         return res
 
     acc_type = fields.Selection(
